@@ -19,8 +19,11 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          build-root-directory: deepslate_generator
 
       - name: Build with Gradle
+        working-directory: deepslate_generator
         run: |
           chmod +x gradlew
           ./gradlew build
@@ -29,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: deepslategen-mod
-          path: build/libs/*.jar
+          path: deepslate_generator/build/libs/*.jar
